@@ -24,6 +24,7 @@
 
 call plug#begin()
 
+Plug 'https://github.com/WolfgangMehner/bash-support.git'
 Plug 'tpope/vim-sensible'
 Plug 'https://github.com/vim-airline/vim-airline'
 Plug 'preservim/nerdtree'
@@ -37,6 +38,10 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'MunifTanjim/nui.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvim-neo-tree/neo-tree.nvim'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'https://github.com/hrsh7th/cmp-buffer.git'
+Plug 'https://github.com/hrsh7th/cmp-path.git'
+Plug 'L3MON4D3/LuaSnip'
 
 call plug#end()
 
