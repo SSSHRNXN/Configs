@@ -42,9 +42,18 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'https://github.com/hrsh7th/cmp-buffer.git'
 Plug 'https://github.com/hrsh7th/cmp-path.git'
 Plug 'L3MON4D3/LuaSnip'
+Plug 'https://github.com/Yggdroot/indentLine.git'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'akinsho/toggleterm.nvim'
 
 call plug#end()
 
+let g:airline#extensions#tabline#enabled = 1
+
+" ===== INDENTLINE =====
+:set list lcs=tab:\|\
+let g:indentLine_char_list = '|'
+" ===== INDENTLINE =====
 " ===== PLUGINS =====
 
 lua <<EOF
@@ -89,6 +98,16 @@ colorscheme catppuccin-nvim " catppuccin-latte, catppuccin-frappe, catppuccin-ma
 nnoremap <leader>e :Neotree toggle<CR>
 nnoremap <leader>fe :Neotree reveal<CR>
 
-" ====== HOTKEYS FOR NERDTREE =====
-"
+" ====== TOGGLETERM =====
+lua <<EOF
+local launch_dir = vim.fn.getcwd()
+
+require('toggleterm').setup({
+  size = 15,
+  open_mapping = [[<leader>t]],
+  direction = 'horizontal',
+  dir = launch_dir,
+})
+EOF
+" ====== TOGGLETERM =====
 cnoreabbrev qqq qa!
