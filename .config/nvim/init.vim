@@ -19,6 +19,7 @@
 :set undofile
 :set encoding=utf-8
 :set fileencoding=utf-8
+:set nohidden
 
 " ===== PLUGINS =====
 
@@ -47,15 +48,34 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'akinsho/toggleterm.nvim'
 Plug 'https://github.com/neovim/nvim-lspconfig.git'
 Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'https://github.com/wfxr/code-minimap.git'
-Plug 'https://github.com/wfxr/minimap.vim.git'
+"Plug 'https://github.com/wfxr/code-minimap.git'
+"Plug 'https://github.com/wfxr/minimap.vim.git'
+Plug 'sheerun/vim-polyglot'
+"Plug 'https://github.com/gorbit99/codewindow.nvim.git'
+Plug 'https://github.com/nvim-mini/mini.map.git'
 
 call plug#end()
 
-let g:minimap_width = 10
-let g:minimap_auto_start = 1
-let g:minimap_auto_start_win_enter = 1
-let g:minimap_highlight_search = 1
+
+"let g:minimap_width = 10
+"let g:minimap_auto_start = 1
+"let g:minimap_auto_start_win_enter = 1
+"let g:minimap_highlight_search = 1
+"autocmd VimLeavePre * MinimapClose 
+lua <<EOF
+require('mini.map').setup({
+  window = { width = 10 },
+  integrations = {
+    require('mini.map').gen_integration.diagnostic(),
+  },
+})
+vim.keymap.set('n', '<space>mm', MiniMap.toggle, { desc = 'Toggle minimap' })
+vim.api.nvim_create_autocmd('VimEnter', {
+  callback = function()
+    MiniMap.open()
+  end,
+})
+EOF
 
 " ===== CAPS LOCK INDICATOR =====
 let g:airline#extensions#tabline#enabled = 1
@@ -92,8 +112,11 @@ let g:indentLine_char_list = '|'
 
 lua <<EOF
 require'nvim-treesitter.config'.setup {
-  ensure_installed = { "bash" },
-  highlight = { enable = true },
+    ensure_installed = { "bash", "python", "markdown", "regex", "json", "yaml", "toml" },
+    highlight = { 
+        enable = true 
+        },
+    auto_install = true
 }
 EOF
 
@@ -242,3 +265,4 @@ cmp.setup({
 EOF
 " ====== NVIM-CMP =====
 cnoreabbrev qqq qa!
+cabbrev q <c-r>=(getcmdpos()==1 && getcmdtype()==':' ? 'bd' : 'q')<CR>
