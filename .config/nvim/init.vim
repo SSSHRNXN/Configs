@@ -45,6 +45,7 @@ Plug 'L3MON4D3/LuaSnip'
 Plug 'https://github.com/Yggdroot/indentLine.git'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'akinsho/toggleterm.nvim'
+Plug 'https://github.com/neovim/nvim-lspconfig.git'
 
 call plug#end()
 
