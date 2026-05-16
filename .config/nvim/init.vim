@@ -47,8 +47,15 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'akinsho/toggleterm.nvim'
 Plug 'https://github.com/neovim/nvim-lspconfig.git'
 Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'https://github.com/wfxr/code-minimap.git'
+Plug 'https://github.com/wfxr/minimap.vim.git'
 
 call plug#end()
+
+let g:minimap_width = 10
+let g:minimap_auto_start = 1
+let g:minimap_auto_start_win_enter = 1
+let g:minimap_highlight_search = 1
 
 " ===== CAPS LOCK INDICATOR =====
 let g:airline#extensions#tabline#enabled = 1
@@ -124,6 +131,8 @@ colorscheme catppuccin-nvim " catppuccin-latte, catppuccin-frappe, catppuccin-ma
 :nnoremap <C-l> <C-w>l
 nnoremap <leader>e :Neotree toggle<CR>
 nnoremap <leader>fe :Neotree reveal<CR>
+nnoremap <S-h> :bprev<CR>
+nnoremap <S-l> :bnext<CR>
 
 " ====== TOGGLETERM =====
 lua <<EOF
