@@ -53,9 +53,17 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'sheerun/vim-polyglot'
 "Plug 'https://github.com/gorbit99/codewindow.nvim.git'
 Plug 'https://github.com/nvim-mini/mini.map.git'
+Plug 'https://github.com/mason-org/mason.nvim.git'
+Plug 'https://github.com/mason-org/mason-lspconfig.nvim.git'
+Plug 'https://github.com/stevearc/dressing.nvim.git'
+Plug 'https://github.com/folke/which-key.nvim.git'
+Plug 'https://github.com/folke/todo-comments.nvim.git'
 
 call plug#end()
 
+lua <<EOF
+require('todo-comments').setup {}
+EOF
 
 "let g:minimap_width = 10
 "let g:minimap_auto_start = 1
@@ -109,6 +117,23 @@ EOF
 let g:indentLine_char_list = '|'
 " ===== INDENTLINE =====
 " ===== PLUGINS =====
+
+" ====== MASON =====
+lua <<EOF
+require('mason').setup()
+require('mason-lspconfig').setup({
+  ensure_installed = {
+    "pyright",
+    "bash-language-server",
+    "lua-language-server",
+    "json-lsp",
+    "yaml-language-server",
+    "taplo",
+  },
+  automatic_installation = true,
+})
+EOF
+" ====== MASON =====
 
 lua <<EOF
 require'nvim-treesitter.config'.setup {
